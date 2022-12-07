@@ -49,19 +49,19 @@ def win_combination(field):
         return True
     return False
 
-
-play_field = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]    # Игровое поле
-current_is_cross = True                                             # Начинаем игру всегда с крестика
-play_count = None                                                   # Счетчик ходов
-for play_count in reversed(range(9)):
+def main():
+    play_field = [['-', '-', '-'], ['-', '-', '-'], ['-', '-', '-']]    # Игровое поле
+    current_is_cross = True                                             # Начинаем игру всегда с крестика
+    play_count = None                                                   # Счетчик ходов
+    for play_count in reversed(range(9)):
+        print_play_field(play_field)
+        x, y = get_coordinates(play_field, current_is_cross)
+        play_field[x][y] = 'X' if current_is_cross else '0'
+        if win_combination(play_field):
+            break
+        current_is_cross = not current_is_cross                         # Меняем текущий тип элемента (крестик или нет)
     print_play_field(play_field)
-    x, y = get_coordinates(play_field, current_is_cross)
-    play_field[x][y] = 'X' if current_is_cross else '0'
-    if win_combination(play_field):
-        break
-    current_is_cross = not current_is_cross                         # Меняем текущий тип элемента (крестик или нет)
-print_play_field(play_field)
-if play_count:
-    print('Выиграли', 'крестики!' if current_is_cross else 'нолики!')
-else:
-    print('Ничья!')
+    if play_count:
+        print('Выиграли', 'крестики!' if current_is_cross else 'нолики!')
+    else:
+        print('Ничья!')
